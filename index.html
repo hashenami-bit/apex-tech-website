@@ -11,43 +11,43 @@
 
     <nav class="apple-nav">
         <div class="nav-content">
-            <a href="index.html" class="logo" style="font-weight: 600;">Apex Tech</a>
+            <a href="index.html" class="logo">Apex Tech</a>
             <ul class="nav-links">
                 <li><a href="#">Mac</a></li>
                 <li><a href="#">iPad</a></li>
                 <li><a href="index.html">iPhone</a></li>
                 <li><a href="#">Watch</a></li>
             </ul>
-            <a href="cart.html" class="cart-icon">Bag</a>
+            <a href="buy.html" class="cart-icon">Bag</a>
         </div>
     </nav>
 
     <main>
         <section class="hero">
             <div class="hero-text">
-                <div class="hero-text">
-                    <h1 class="fade-in">iPhone 17 Pro</h1>
-                    <h2 class="fade-in-delayed">Titanium. So strong. So light. So Pro.</h2>
-                </div>
+                <h1 class="fade-in">iPhone 17 Pro</h1>
+                <h2 class="fade-in-delayed">Titanium. So strong. So light. So Pro.</h2>
+            </div>
             
             <div class="hero-carousel slide-up">
-                <img src="images/17 pro white.png" alt="Silver Titanium" class="carousel-img pos-left" id="img1">
-                <img src="images/17 pro orange.png" alt="Orange Titanium" class="carousel-img pos-center" id="img2">
-                <img src="images/17 pro blue.png" alt="Blue Titanium" class="carousel-img pos-right" id="img3">
+                <img src="images/17 pro white.png" alt="Silver" class="carousel-img pos-left" id="img1">
+                <img src="images/17 pro orange.png" alt="Orange" class="carousel-img pos-center" id="img2">
+                <img src="images/17 pro blue.png" alt="Blue" class="carousel-img pos-right" id="img3">
             </div>
         
             <div class="hero-pricing fade-in-delayed">
-                <a href="buy.html" class="btn btn-primary">Buy</a>
+                <a href="buy.html" class="hero-buy-btn">Buy</a>
                 <p class="pricing-text">From $1099 or $45.79/mo. for 24 mo.*</p>
             </div>
         </section>
-
-        <section class="lineup" id="compare">
-            <h2 class="section-title">Which iPhone is right for you?</h2>
             
-            <div class="grid-container">
-                <div class="card">
-                    <div class="card-image">iPhone 16</div>
+        <section class="compare-grid fade-in-delayed">
+            <h1>Which iPhone is right for you?</h1>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/16-fb.jpg" alt="iPhone 16" class="product-image">
+                    </div>
                     <h3>iPhone 16</h3>
                     <p class="price">From $799</p>
                     <hr>
@@ -55,14 +55,16 @@
                         <li>3349 mAh Battery</li>
                         <li>20W Charging</li>
                         <li>2000 nits Brightness</li>
-                        <li>60Hz Standard Display</li>
+                        <li>60Hz Display</li>
                         <li>Aluminum Design</li>
                     </ul>
-                    <a href="buy.html" class="btn btn-primary btn-small">Buy</a>
+                    <a href="buy.html" class="hero-buy-btn">Buy</a>
                 </div>
-
-                <div class="card">
-                    <div class="card-image">iPhone 17</div>
+        
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/17-fb.jpg" alt="iPhone 17" class="product-image">
+                    </div>
                     <h3>iPhone 17</h3>
                     <p class="price">From $899</p>
                     <hr>
@@ -70,40 +72,41 @@
                         <li>3692 mAh Battery</li>
                         <li>35W Fast Charging</li>
                         <li>2200 nits Brightness</li>
-                        <li>60Hz Standard Display</li>
+                        <li>60Hz Display</li>
                         <li>Aluminum Design</li>
                     </ul>
-                    <a href="buy.html" class="btn btn-primary btn-small">Buy</a>
+                    <a href="buy.html" class="hero-buy-btn">Buy</a>
                 </div>
-
-                <div class="card pro-card">
-                    <div class="card-image">iPhone 17 Pro</div>
+        
+                <div class="product-card pro-card">
+                    <div class="product-image-container">
+                        <img src="images/17-pro-fb.jpg" alt="iPhone 17 Pro" class="product-image">
+                    </div>
                     <h3>iPhone 17 Pro</h3>
                     <p class="price">From $1099</p>
                     <hr>
                     <ul class="specs">
-                        <li>3692 mAh Battery</li>
+                        <li>3892 mAh Battery</li>
                         <li>35W Fast Charging</li>
                         <li>2200 nits Brightness</li>
-                        <li>ProMotion 120Hz Display</li>
+                        <li>ProMotion 120Hz</li>
                         <li>Titanium Design</li>
                     </ul>
-                    <a href="buy.html" class="btn btn-primary btn-small">Buy</a>
+                    <a href="buy.html" class="hero-buy-btn">Buy</a>
                 </div>
             </div>
         </section>
     </main>
 
+    <script>
+        const images = document.querySelectorAll('.carousel-img');
+        let positions = ['pos-left', 'pos-center', 'pos-right'];
+        setInterval(() => {
+            positions.unshift(positions.pop());
+            images.forEach((img, index) => {
+                img.className = 'carousel-img ' + positions[index];
+            });
+        }, 1500);
+    </script>
 </body>
-<script>
-    const images = document.querySelectorAll('.carousel-img');
-    let positions = ['pos-left', 'pos-center', 'pos-right'];
-
-    setInterval(() => {
-        positions.unshift(positions.pop());
-        images.forEach((img, index) => {
-            img.className = 'carousel-img ' + positions[index];
-        });
-    }, 1500);
-</script>
 </html>
