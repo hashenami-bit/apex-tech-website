@@ -1,0 +1,269 @@
+/* --- GLOBAL VARIABLES --- */
+:root {
+    --bg-dark: #000000;
+    --text-main: #f5f5f7;
+    --text-muted: #86868b;
+    --apple-blue: #2997ff;
+    --nav-glass: rgba(0, 0, 0, 0.7);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* --- THE FROSTED NAVBAR --- */
+.apple-nav {
+    position: fixed;
+    top: 0; width: 100%; height: 44px;
+    background-color: var(--nav-glass);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 9999;
+    display: flex; justify-content: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav-content {
+    width: 100%; max-width: 1000px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 20px; font-size: 12px; font-weight: 400;
+}
+
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a { opacity: 0.8; transition: opacity 0.3s; }
+.nav-links a:hover { opacity: 1; }
+
+.hero {
+    height: auto;              /* Allows the section to grow */
+    min-height: 100vh;         /* Ensures it always takes up at least the full screen */
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: flex-start;
+    padding-top: 120px; 
+    padding-bottom: 80px;      /* Gives the new bottom button room to breathe */
+    text-align: center;
+}
+
+.hero-text {
+    position: relative; /* Essential for z-index */
+    z-index: 10;        /* Higher number pushes text to the front */
+}
+
+.hero-text h1 { font-size: 56px; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 8px; }
+.hero-text h2 { font-size: 26px; font-weight: 400; color: var(--text-muted); margin-bottom: 25px; }
+
+.cta-buttons {
+    display: flex;
+    flex-direction: row;      /* Forces buttons to stay in a line */
+    justify-content: center;   /* Centers them horizontally */
+    align-items: center;       /* Aligns them vertically */
+    gap: 30px;                 /* Adds a clean Apple-style gap between them */
+    margin-top: 20px;          /* Gives the text above some breathing room */
+    width: 100%;               /* Ensures the container uses all available space */
+}
+
+.btn { 
+    padding: 12px 28px;        /* Updated padding for a premium feel */
+    border-radius: 980px; 
+    font-size: 17px; 
+    transition: all 0.3s ease; 
+    cursor: pointer; 
+    border: none;
+    white-space: nowrap;       /* Prevents the text from stacking inside the button */
+    display: inline-block;     /* Ensures the button respects the padding correctly */
+}
+.btn-primary { background-color: var(--apple-blue); color: #fff; }
+.btn-primary:hover { background-color: #0071e3; }
+.btn-secondary { color: var(--apple-blue); font-size: 19px; background: transparent; }
+.btn-secondary:hover { text-decoration: underline; }
+
+/* --- THE 3D CAROUSEL CONTAINER --- */
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    height: 650px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center 40%, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
+}
+
+/* --- THE BASE IMAGE RULES --- */
+.carousel-img {
+    position: absolute;
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
+    object-fit: contain;
+}
+
+/* --- THE 3 POSITIONS --- */
+.pos-center {
+    height: 600px;
+    z-index: 3; 
+    filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.8));
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+.pos-left {
+    height: 450px;
+    z-index: 1; 
+    transform: translateX(-280px); 
+    opacity: 0.4; 
+    filter: blur(3px); 
+}
+
+.pos-right {
+    height: 450px;
+    z-index: 1;
+    transform: translateX(280px); 
+    opacity: 0.4;
+    filter: blur(3px);
+}
+
+.mock-phone {
+    width: 320px; 
+    height: 600px;
+    background: linear-gradient(145deg, #111, #000);
+    border: 1px solid #333; 
+    border-radius: 50px 50px 0 0;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: #555;
+    /* Added a subtle top-glow to make it look premium against the black background */
+    box-shadow: 0 -15px 60px rgba(255, 255, 255, 0.04); 
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(100px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in { animation: fadeIn 1s ease-out forwards; }
+.fade-in-delayed { opacity: 0; animation: fadeIn 1s ease-out 0.4s forwards; }
+.slide-up { opacity: 0; animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards; }
+
+/* --- LINEUP GRID SECTION --- */
+.lineup {
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #050505; 
+    position: relative;
+    z-index: 20; /* Ensures grid is above any hero overlaps */
+}
+
+.section-title {
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.card {
+    background-color: #121212;
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.03); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.pro-card {
+    border: 1px solid #444; 
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #555;
+    font-size: 14px;
+}
+
+.card h3 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.price {
+    font-size: 16px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.card hr {
+    border: none;
+    border-top: 1px solid #333;
+    margin-bottom: 20px;
+}
+
+.specs {
+    list-style: none;
+    margin-bottom: 30px;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+.specs strong {
+    color: var(--text-main);
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+/* --- HERO PRICING (Below Carousel) --- */
+.hero-pricing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;             
+    position: relative;    /* Ensures the button stays clickable */
+    z-index: 10;
+    margin-top: -50px;     /* <-- THIS IS THE FIX: A negative number pulls it UP! */
+}
+
+.pricing-text {
+    font-size: 14px;
+    color: var(--text-main);
+    font-weight: 600;      /* Makes it slightly bold, matching the Apple reference */
+}

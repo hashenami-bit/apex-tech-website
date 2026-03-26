@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 17 Pro - Apex Tech</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="apple-nav">
+        <div class="nav-content">
+            <a href="index.html" class="logo" style="font-weight: 600;">Apex Tech</a>
+            <ul class="nav-links">
+                <li><a href="#">Mac</a></li>
+                <li><a href="#">iPad</a></li>
+                <li><a href="index.html">iPhone</a></li>
+                <li><a href="#">Watch</a></li>
+            </ul>
+            <a href="cart.html" class="cart-icon">Bag</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-text">
+                <div class="hero-text">
+                    <h1 class="fade-in">iPhone 17 Pro</h1>
+                    <h2 class="fade-in-delayed">Titanium. So strong. So light. So Pro.</h2>
+                </div>
+            
+            <div class="hero-carousel slide-up">
+                <img src="images/17 pro white.png" alt="Silver Titanium" class="carousel-img pos-left" id="img1">
+                <img src="images/17 pro orange.png" alt="Orange Titanium" class="carousel-img pos-center" id="img2">
+                <img src="images/17 pro blue.png" alt="Blue Titanium" class="carousel-img pos-right" id="img3">
+            </div>
+        
+            <div class="hero-pricing fade-in-delayed">
+                <a href="buy.html" class="btn btn-primary">Buy</a>
+                <p class="pricing-text">From $1099 or $45.79/mo. for 24 mo.*</p>
+            </div>
+        </section>
+
+        <section class="lineup" id="compare">
+            <h2 class="section-title">Which iPhone is right for you?</h2>
+            
+            <div class="grid-container">
+                <div class="card">
+                    <div class="card-image">iPhone 16</div>
+                    <h3>iPhone 16</h3>
+                    <p class="price">From $799</p>
+                    <hr>
+                    <ul class="specs">
+                        <li>3349 mAh Battery</li>
+                        <li>20W Charging</li>
+                        <li>2000 nits Brightness</li>
+                        <li>60Hz Standard Display</li>
+                        <li>Aluminum Design</li>
+                    </ul>
+                    <a href="buy.html" class="btn btn-primary btn-small">Buy</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">iPhone 17</div>
+                    <h3>iPhone 17</h3>
+                    <p class="price">From $899</p>
+                    <hr>
+                    <ul class="specs">
+                        <li>3692 mAh Battery</li>
+                        <li>35W Fast Charging</li>
+                        <li>2200 nits Brightness</li>
+                        <li>60Hz Standard Display</li>
+                        <li>Aluminum Design</li>
+                    </ul>
+                    <a href="buy.html" class="btn btn-primary btn-small">Buy</a>
+                </div>
+
+                <div class="card pro-card">
+                    <div class="card-image">iPhone 17 Pro</div>
+                    <h3>iPhone 17 Pro</h3>
+                    <p class="price">From $1099</p>
+                    <hr>
+                    <ul class="specs">
+                        <li>3692 mAh Battery</li>
+                        <li>35W Fast Charging</li>
+                        <li>2200 nits Brightness</li>
+                        <li>ProMotion 120Hz Display</li>
+                        <li>Titanium Design</li>
+                    </ul>
+                    <a href="buy.html" class="btn btn-primary btn-small">Buy</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+<script>
+    const images = document.querySelectorAll('.carousel-img');
+    let positions = ['pos-left', 'pos-center', 'pos-right'];
+
+    setInterval(() => {
+        positions.unshift(positions.pop());
+        images.forEach((img, index) => {
+            img.className = 'carousel-img ' + positions[index];
+        });
+    }, 1500);
+</script>
+</html>
