@@ -212,16 +212,17 @@ a { text-decoration: none; color: inherit; }
     margin: 0 auto;
 }
 
-/* PINNED PHONE (Clean and Fixed!) */
+/* PINNED PHONE */
 .preview-column {
     flex: 1;
     position: -webkit-sticky; 
     position: sticky; 
-    top: 120px; 
-    align-self: flex-start; /* Ensures it doesn't stretch */
-    height: max-content; /* Defines the height so it can stick */
+    top: 0; 
+    height: 100vh; 
     display: flex;
-    justify-content: center;
+    justify-content: center; 
+    align-items: flex-start; 
+    padding-top: 200px; 
     z-index: 10;
 }
 
@@ -264,12 +265,52 @@ a { text-decoration: none; color: inherit; }
 .color-dot.white { background-color: #f5f5f7; }
 .color-dot.active { border-color: var(--accent-blue); } 
 
-.whats-in-the-box { text-align: center; padding: 80px 5% 150px; background-color: var(--panel-bg); border-top: 1px solid var(--border-color); }
-.whats-in-the-box h2 { font-size: 40px; margin-bottom: 50px; font-weight: 600; }
-.box-container { display: flex; justify-content: center; gap: 80px; background-color: var(--bg-color); max-width: 900px; margin: 0 auto; padding: 60px; border-radius: 20px; }
-.box-item img { height: 300px; width: auto; object-fit: cover; object-position: top; }
-.box-item p { margin-top: 20px; font-weight: 500; font-size: 14px; }
-.env-goals { max-width: 700px; margin: 40px auto 0; font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+/* =========================================
+   WHAT'S IN THE BOX (One Big Box Layout) 
+   ========================================= */
+.whats-in-the-box { text-align: center; padding: 100px 5% 150px; background-color: var(--bg-color); border-top: 1px solid var(--border-color); }
+.whats-in-the-box h2 { font-size: 40px; margin-bottom: 60px; font-weight: 600; }
+
+/* The Single Large Presentation Box */
+.big-box-backdrop { 
+    background-color: #f5f5f7; /* Premium Apple off-white */
+    border-radius: 30px; 
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 80px 40px 60px; 
+    display: flex; 
+    justify-content: center; 
+    gap: 120px; /* Space between phone and cable */
+}
+
+.box-item { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: flex-end; /* Keeps items aligned at the bottom */
+}
+
+.box-item img { 
+    height: 320px; 
+    width: auto; 
+    object-fit: contain; 
+    margin-bottom: 40px;
+}
+
+/* THE MAGIC TRICK: Makes the JPG white background invisible! */
+.blend-img { 
+    mix-blend-mode: darken; 
+}
+
+/* Because the box is light, the text inside must be dark */
+.box-item p { 
+    font-weight: 600; 
+    font-size: 15px; 
+    color: #1d1d1f; 
+}
+
+.env-goals { max-width: 700px; margin: 60px auto 0; font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
 
 .detailed-specs { background-color: #050505; border-top: 1px solid var(--border-color); text-align: center; padding: 100px 5% 150px; }
 .detailed-specs h2 { font-size: 40px; margin-bottom: 60px; font-weight: 600; }
@@ -295,29 +336,36 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 900px) {
     .product-grid, .detailed-specs .product-grid { grid-template-columns: 1fr; }
     
-    /* Mobile-specific layout resets */
     .config-wrapper { 
         flex-direction: column; 
         align-items: center; 
         padding-top: 100px;
     }
-    /* PINNED PHONE (Perfectly Centered) */
-/* PINNED PHONE (Adjusted Lower) */
-.preview-column {
-    flex: 1;
-    position: -webkit-sticky; 
-    position: sticky; 
-    top: 200px; 
-    height: 100vh; 
     
-    display: flex;
-    justify-content: center; 
-    align-items: flex-start; /* Pins it to the top so we can push it down manually */
+    .preview-column { 
+        position: relative; 
+        top: 0; 
+        margin-bottom: 40px; 
+        width: 100%;
+        height: auto;
+        padding-top: 0;
+    }
     
-    padding-top: 200px; /* THE MAGIC NUMBER: Increase this to push the phone lower */
-    
-    z-index: 10;
+    /* Mobile formatting for the big box */
+    .big-box-backdrop { 
+        flex-direction: column;
+        gap: 60px;
+        padding: 60px 20px;
+    }
 }
-    
-    .box-container { flex-direction: column; align-items: center; gap: 40px; }
+
+/* DISABLED / OUT OF STOCK BUTTONS */
+.buy-btn.disabled {
+    background-color: #333336;
+    color: #86868b;
+    cursor: not-allowed;
+}
+.buy-btn.disabled:hover {
+    background-color: #333336;
+    transform: none; /* Stops the hover zoom effect */
 }

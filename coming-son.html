@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - Apex Tech</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Special styling just for this page */
+        .coming-soon-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 85vh;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .coming-soon-title {
+            font-size: 72px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            /* Premium Apple Gradient Effect */
+            background: linear-gradient(90deg, #0071e3, #42a1f5, #0071e3);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 3s linear infinite;
+        }
+
+        .coming-soon-subtitle {
+            font-size: 24px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="apple-nav">
+        <div class="nav-content">
+            <a href="index.html" class="logo">Apex Tech</a>
+            <ul class="nav-links">
+                <li><a href="coming-soon.html">Mac</a></li>
+                <li><a href="coming-soon.html">iPad</a></li>
+                <li><a href="index.html">iPhone</a></li>
+                <li><a href="coming-soon.html">Watch</a></li>
+            </ul>
+            <a href="buy.html" class="cart-icon">Bag</a>
+        </div>
+    </nav>
+
+    <main class="coming-soon-wrapper">
+        <h1 class="coming-soon-title">Coming Soon.</h1>
+        <p class="coming-soon-subtitle">We are currently engineering the next generation of Mac, iPad, and Watch experiences. Check back later.</p>
+        <a href="index.html" class="hero-buy-btn">Return to iPhone</a>
+    </main>
+
+</body>
+</html>

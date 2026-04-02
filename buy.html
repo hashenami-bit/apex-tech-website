@@ -12,10 +12,10 @@
         <div class="nav-content">
             <a href="index.html" class="logo">Apex Tech</a>
             <ul class="nav-links">
-                <li><a href="#">Mac</a></li>
-                <li><a href="#">iPad</a></li>
+                <li><a href="coming-soon.html">Mac</a></li>
+                <li><a href="coming-soon.html">iPad</a></li>
                 <li><a href="index.html">iPhone</a></li>
-                <li><a href="#">Watch</a></li>
+                <li><a href="coming-soon.html">Watch</a></li>
             </ul>
             <a href="#" class="cart-icon">Bag</a>
         </div>
@@ -35,12 +35,6 @@
 
             <h3>Model. <span>Which is best for you?</span></h3>
             <div class="storage-grid" style="margin-bottom: 40px;">
-                <div class="storage-option model-option" data-base-price="799" data-name="iPhone 16" data-image="images/iphone-16.png">
-                    <div style="display: flex; justify-content: space-between;">
-                        <div><strong>iPhone 16</strong><br><span style="font-size: 13px; color: var(--text-muted);">6.1-inch display</span></div>
-                        <div style="text-align: right;"><span style="font-size: 13px;">From $799</span></div>
-                    </div>
-                </div>
 
                 <div class="storage-option model-option" data-base-price="899" data-name="iPhone 17" data-image="images/iphone-17.png">
                     <div style="display: flex; justify-content: space-between;">
@@ -91,16 +85,19 @@
 
     <section class="whats-in-the-box">
         <h2>What's in the Box</h2>
-        <div class="box-container">
+        
+        <div class="big-box-backdrop">
             <div class="box-item">
                 <img id="box-phone-img" src="images/17 pro orange 2.png" alt="iPhone 17 Pro">
                 <p id="box-phone-name">iPhone 17 Pro</p>
             </div>
+            
             <div class="box-item">
-                <img src="images/USB-C.jpg" alt="USB-C Charge Cable">
+                <img src="images/USB-C.jpg" alt="USB-C Charge Cable" class="blend-img">
                 <p>USB-C Charge Cable</p>
             </div>
         </div>
+
         <div class="env-goals">
             <p><strong>Our environmental goals.</strong></p>
             <p>As part of our efforts to reach carbon neutrality by 2030, iPhone 17 Pro and iPhone 17 Pro Max do not include a power adapter or EarPods. Included in the box is a USB-C Charge Cable that supports fast charging.</p>
@@ -109,8 +106,9 @@
 
     <section class="compare-grid detailed-specs">
         <h2>Detailed Technical Specifications</h2>
+        
         <div class="product-grid">
-            
+
             <div class="product-card">
                 <h3>iPhone 16</h3>
                 <p class="price">From $799</p>
@@ -123,7 +121,7 @@
                     <li><div class="spec-icon">🔋</div><strong>22 hours</strong><span>video playback</span></li>
                 </ul>
             </div>
-
+            
             <div class="product-card">
                 <h3>iPhone 17</h3>
                 <p class="price">From $899</p>
@@ -175,7 +173,6 @@
         const checkoutPrice = document.getElementById('checkout-price'); 
         const mainImg = document.getElementById('main-phone-img'); // Grab main phone image
 
-        // [Point 4 & 5: Elements for updating box and stats sections]
         const boxPhoneImg = document.getElementById('box-phone-img');
         const boxPhoneName = document.getElementById('box-phone-name');
 
@@ -201,7 +198,6 @@
                 let newName = option.getAttribute('data-name');
                 let newImage = option.getAttribute('data-image'); 
 
-                // --- NEW LOGIC: Turn off Aura for non-Pro models ---
                 if (newName.includes('Pro')) {
                     if(aura) aura.style.display = 'block';
                 } else {
@@ -216,7 +212,6 @@
                     mainImg.src = newImage;
                     mainImg.alt = newName;
                     
-                    // Update the "What's in the Box" section instantly too
                     boxPhoneImg.src = newImage;
                     boxPhoneImg.alt = newName;
                     boxPhoneName.innerText = newName;
@@ -250,7 +245,7 @@
             });
         });
 
-        // Color Switching & Aura Logic (Keep this for colors)
+        // Color Switching & Aura Logic
         const dots = document.querySelectorAll('.color-dot');
         const colorText = document.getElementById('color-name');
         const aura = document.getElementById('phone-aura'); 
