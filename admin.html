@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal - Bo2 Tech</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-wrapper { max-width: 1000px; margin: 100px auto; padding: 20px; }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #424245; padding-bottom: 20px; margin-bottom: 30px; }
+        .admin-header h1 { font-size: 32px; }
+        .dashboard-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; }
+        .add-product-panel, .inventory-panel { background: #121212; padding: 30px; border-radius: 20px; border: 1px solid #424245; height: fit-content; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 5px; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; background: #1d1d1f; border: 1px solid #424245; color: white; border-radius: 8px; outline: none; }
+        .btn-save { width: 100%; padding: 12px; background: var(--accent-blue); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 10px; }
+        .inventory-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .inventory-table th { padding: 12px; border-bottom: 1px solid #424245; color: var(--text-muted); }
+        .inventory-table td { padding: 15px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .status-badge { padding: 4px 10px; border-radius: 99px; font-size: 12px; font-weight: 600; cursor: pointer; user-select: none; }
+        .status-in { background: rgba(52, 199, 89, 0.2); color: #34c759; border: 1px solid #34c759; }
+        .status-out { background: rgba(255, 59, 48, 0.2); color: #ff3b30; border: 1px solid #ff3b30; }
+        .action-btn { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <nav class="apple-nav">
+        <div class="nav-content">
+            <a href="index.html" class="logo">Bo2 Tech Admin</a>
+            <ul class="nav-links">
+                <li><a href="index.html">View Live Site</a></li>
+                <li><a href="#" onclick="logoutAdmin()">Sign Out</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="admin-wrapper">
+        <div class="admin-header">
+            <h1>Inventory Management</h1>
+            <p>Global Store Sync Active</p>
+        </div>
+        <div class="dashboard-grid">
+            <div class="add-product-panel">
+                <h3 style="margin-bottom: 20px;">Add New Model</h3>
+                <form id="addProductForm">
+                    <div class="form-group"><label>Device Name</label><input type="text" id="modelName" required></div>
+                    <div class="form-group"><label>Base Price ($)</label><input type="number" id="modelPrice" required></div>
+                    <div class="form-group">
+                        <label>Stock Status</label>
+                        <select id="modelStatus"><option value="in">In Stock</option><option value="out">Out of Stock</option></select>
+                    </div>
+                    <button type="submit" class="btn-save">Deploy to Website</button>
+                </form>
+            </div>
+            <div class="inventory-panel">
+                <h3 style="margin-bottom: 20px;">Live Website Database</h3>
+                <table class="inventory-table">
+                    <thead><tr><th>Model Name</th><th>Price</th><th>Toggle Status</th><th>Action</th></tr></thead>
+                    <tbody id="inventoryBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let inventory = JSON.parse(localStorage.getItem('globalInventory'));
+        if(!inventory) {
+            inventory = [
+                { name: "iPhone 17 Pro", price: 1099, status: "in", isNew: false },
+                { name: "iPhone 17", price: 899, status: "in", isNew: false },
+                { name: "iPhone 16", price: 799, status: "out", isNew: false },
+                { name: "iPhone 16 Pro", price: 999, status: "out", isNew: false }
+            ];
+            localStorage.setItem('globalInventory', JSON.stringify(inventory));
+        }
+
+        const tableBody = document.getElementById('inventoryBody');
+        const form = document.getElementById('addProductForm');
+
+        function renderTable() {
+            tableBody.innerHTML = '';
+            inventory.forEach((item, index) => {
+                let bClass = item.status === 'in' ? 'status-in' : 'status-out';
+                let bText = item.status === 'in' ? 'In Stock' : 'Out of Stock';
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td><strong>${item.name}</strong></td><td>$${item.price}</td>
+                    <td><span class="status-badge ${bClass}" onclick="toggleStatus(${index})">${bText}</span></td>
+                    <td><button class="action-btn" onclick="deleteItem(${index})">Remove</button></td>`;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        function toggleStatus(index) {
+            inventory[index].status = inventory[index].status === 'in' ? 'out' : 'in';
+            localStorage.setItem('globalInventory', JSON.stringify(inventory));
+            renderTable();
+        }
+
+        function deleteItem(index) {
+            if(confirm("Remove this phone from the website?")) {
+                inventory.splice(index, 1);
+                localStorage.setItem('globalInventory', JSON.stringify(inventory));
+                renderTable();
+            }
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            inventory.unshift({
+                name: document.getElementById('modelName').value,
+                price: document.getElementById('modelPrice').value,
+                status: document.getElementById('modelStatus').value,
+                isNew: true 
+            });
+            localStorage.setItem('globalInventory', JSON.stringify(inventory));
+            form.reset();
+            renderTable();
+        });
+
+        function logoutAdmin() { localStorage.removeItem('bo2User'); window.location.href = 'login.html'; }
+        renderTable();
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Bo2 Tech</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-container { display: flex; justify-content: center; align-items: center; min-height: 90vh; padding: 100px 20px 50px; }
+        .auth-box { background: #121212; border: 1px solid #424245; padding: 50px 40px; border-radius: 20px; width: 100%; max-width: 480px; text-align: center; }
+        .auth-box h2 { font-size: 28px; margin-bottom: 30px; font-weight: 600; letter-spacing: -0.01em; }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group input { width: 100%; padding: 14px 15px; border-radius: 12px; border: 1px solid #424245; background: #1d1d1f; color: white; font-size: 15px; outline: none; transition: border 0.3s ease; }
+        .input-group input:focus { border-color: var(--accent-blue); }
+        .auth-btn { width: 100%; padding: 14px; background: var(--accent-blue); color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 10px; transition: all 0.3s ease; }
+        .auth-btn:hover { background: #0077ed; }
+        .toggle-link { color: var(--accent-blue); font-size: 13px; cursor: pointer; margin-top: 25px; display: inline-block; }
+        .hidden { display: none; }
+        .legal-box { background: #1d1d1f; border: 1px solid #424245; border-radius: 12px; padding: 15px; height: 150px; overflow-y: auto; text-align: left; margin-bottom: 20px; }
+        .legal-box h4 { font-size: 13px; margin-bottom: 5px; color: white; }
+        .legal-box p { font-size: 11px; color: var(--text-muted); margin-bottom: 15px; line-height: 1.5; }
+        .checkbox-group { display: flex; align-items: flex-start; gap: 10px; text-align: left; margin-bottom: 20px; }
+        .checkbox-group input { margin-top: 3px; }
+        .checkbox-group label { font-size: 12px; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+
+    <nav class="apple-nav">
+        <div class="nav-content">
+            <a href="index.html" class="logo">Bo2 Tech</a>
+            <ul class="nav-links">
+                <li><a href="coming-soon.html">Mac</a></li>
+                <li><a href="coming-soon.html">iPad</a></li>
+                <li><a href="index.html">iPhone</a></li>
+                <li><a href="coming-soon.html">Watch</a></li>
+                <li><a href="login.html" id="nav-auth-link">Sign In</a></li>
+            </ul>
+            <a href="cart.html" class="cart-icon">Bag</a>
+        </div>
+    </nav>
+
+    <main class="auth-container">
+        <div class="auth-box" id="login-section">
+            <h2>Sign in to Bo2 Tech</h2>
+            <form id="loginForm" autocomplete="off">
+                <div class="input-group">
+                    <input type="text" id="loginId" placeholder="Email or Bo2 ID" autocomplete="off" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="loginPass" placeholder="Password" autocomplete="new-password" required>
+                </div>
+                <button type="submit" class="auth-btn">Sign In</button>
+            </form>
+            <span class="toggle-link" onclick="toggleForm()">Don't have a Bo2 ID? Create yours now.</span>
+        </div>
+
+        <div class="auth-box hidden" id="register-section">
+            <h2>Create Your Bo2 ID</h2>
+            <form id="registerForm" autocomplete="off">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div class="input-group"><input type="text" id="regFirstName" placeholder="First Name" autocomplete="off" required></div>
+                    <div class="input-group"><input type="text" id="regLastName" placeholder="Last Name" autocomplete="off" required></div>
+                </div>
+                <div class="input-group"><input type="email" id="regEmail" placeholder="name@example.com" autocomplete="off" required></div>
+                <div class="input-group"><input type="password" placeholder="Create Password" autocomplete="new-password" required></div>
+                
+                <div class="legal-box">
+                    <h4>TERMS & CONDITIONS</h4>
+                    <p>By using iStore, customers agree to the following terms and conditions. The payment has to be entirely made at the point of purchase before processed and delivered. Approved payments are credit/debit cards. Once the order is dispatched, it usually takes between 3-7 business days to reach location including numerous time factors and external circumstances beyond our control. Customers are able to track once the order has been shipped. Customers can request a refund of qualified products within 7 days after delivery, as long as the product remains untouched, in its original packaging and with evidence of sale. Refunds will be done within 7-10 business days upon receiving and inspection of the returned item. Any iPhone is accompanied by a 12 months hardware warranty. Physical damages and illegal modifications do not fall under it. Customers are responsible for providing accurate delivery information. iStore retains the authority to reject or cancel wrong or suspicious orders and is only entitled to gather and store customer information to process the orders and to make it better, as the data protection laws dictate.</p>
+                    
+                    <h4>SLA</h4>
+                    <p>This Service Level Agreement establishes the parameters of the services iStore promises to its clients. The site will have a minimum uptime of 99%, which will guarantee the availability of the site at all times, and any scheduled maintenance will be announced beforehand. Orders that have been confirmed will take a maximum of 3 business days to be processed and shipping confirmation and tracking information will be given out immediately. The customer queries placed through email or live chat will be handled by first responding within the course of the next 24 hours, working days. Many complaints and technical problems will be addressed within a 3-5 working days, based on the complexity. The data of any customer, such as personal and payment data, will be processed safely, adhering to the existing data protection laws.</p>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="agreeTerms" required>
+                    <label for="agreeTerms">I have read and agree to the Terms & Conditions and the Service Level Agreement.</label>
+                </div>
+
+                <button type="submit" class="auth-btn">Create Account</button>
+            </form>
+            <span class="toggle-link" onclick="toggleForm()">Already have a Bo2 ID? Sign In.</span>
+        </div>
+    </main>
+
+    <script>
+        function toggleForm() {
+            document.getElementById('login-section').classList.toggle('hidden');
+            document.getElementById('register-section').classList.toggle('hidden');
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userId = document.getElementById('loginId').value.trim();
+            const pass = document.getElementById('loginPass').value.trim();
+
+            if (userId === 'admin' && pass === 'bo2_admin') {
+                localStorage.setItem('bo2User', 'Admin');
+                window.location.href = 'admin.html';
+            } else {
+                localStorage.setItem('bo2User', userId);
+                window.location.href = 'index.html';
+            }
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const firstName = document.getElementById('regFirstName').value.trim();
+            localStorage.setItem('bo2User', firstName);
+            window.location.href = 'index.html';
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentUser = localStorage.getItem('bo2User');
+            if (currentUser) { window.location.href = 'index.html'; }
+        });
+    </script>
+</body>
+</html>

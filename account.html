@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Bo2 Tech</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .account-wrapper { max-width: 800px; margin: 120px auto 100px; padding: 0 20px; }
+        .profile-header { display: flex; align-items: center; gap: 20px; border-bottom: 1px solid #424245; padding-bottom: 30px; margin-bottom: 40px; }
+        .avatar-circle { width: 80px; height: 80px; background: #1d1d1f; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid #424245; }
+        .avatar-circle svg { width: 40px; height: 40px; color: var(--text-muted); }
+        .profile-info h1 { font-size: 32px; margin-bottom: 5px; }
+        .profile-info p { color: var(--text-muted); font-size: 15px; }
+        .orders-section { background: #121212; border-radius: 20px; border: 1px solid #424245; padding: 30px; }
+        .orders-section h2 { font-size: 24px; margin-bottom: 20px; border-bottom: 1px solid #424245; padding-bottom: 15px; }
+        .order-card { background: #1d1d1f; border-radius: 12px; padding: 20px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .order-details h4 { font-size: 18px; margin-bottom: 5px; }
+        .order-details p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+        .order-status { text-align: right; }
+        .order-status span { display: inline-block; background: rgba(52, 199, 89, 0.2); color: #34c759; padding: 5px 12px; border-radius: 99px; font-size: 12px; font-weight: 600; margin-bottom: 5px; }
+        .order-price { font-size: 18px; font-weight: 600; }
+        .logout-btn { display: inline-block; margin-top: 40px; background: transparent; border: 1px solid #ff3b30; color: #ff3b30; padding: 10px 24px; border-radius: 99px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .logout-btn:hover { background: rgba(255, 59, 48, 0.1); }
+    </style>
+</head>
+<body>
+
+    <nav class="apple-nav">
+        <div class="nav-content">
+            <a href="index.html" class="logo">Bo2 Tech</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Return to Store</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="account-wrapper">
+        <div class="profile-header">
+            <div class="avatar-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </div>
+            <div class="profile-info">
+                <h1>Welcome, <span id="accountName">User</span></h1>
+                <p>Manage your orders and profile settings.</p>
+            </div>
+        </div>
+
+        <div class="orders-section">
+            <h2>Order History</h2>
+            <div id="ordersContainer"></div>
+        </div>
+
+        <button class="logout-btn" onclick="logout()">Sign Out</button>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = localStorage.getItem('bo2User');
+            if (!user) {
+                window.location.href = 'login.html'; 
+                return;
+            }
+            document.getElementById('accountName').innerText = user;
+
+            const orders = JSON.parse(localStorage.getItem('bo2Orders_' + user)) || [];
+            const container = document.getElementById('ordersContainer');
+            
+            if (orders.length === 0) {
+                container.innerHTML = '<p style="color: #86868b;">You have no previous orders.</p>';
+            } else {
+                orders.reverse().forEach(order => {
+                    const card = document.createElement('div');
+                    card.className = 'order-card';
+                    card.innerHTML = `
+                        <div class="order-details">
+                            <h4>${order.item}</h4>
+                            <p>Order Date: ${order.date}<br>Order ID: #${Math.floor(Math.random() * 90000) + 10000}</p>
+                        </div>
+                        <div class="order-status">
+                            <span>Processing</span>
+                            <div class="order-price">${order.price}</div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+        });
+
+        function logout() {
+            if(confirm("Are you sure you want to sign out?")) {
+                localStorage.removeItem('bo2User');
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

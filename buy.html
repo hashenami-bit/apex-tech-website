@@ -3,47 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buy iPhone 17 Pro - Apex Tech</title>
+    <title>Buy iPhone - Bo2 Tech</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav class="apple-nav">
         <div class="nav-content">
-            <a href="index.html" class="logo">Apex Tech</a>
+            <a href="index.html" class="logo">Bo2 Tech</a>
             <ul class="nav-links">
                 <li><a href="coming-soon.html">Mac</a></li>
                 <li><a href="coming-soon.html">iPad</a></li>
                 <li><a href="index.html">iPhone</a></li>
                 <li><a href="coming-soon.html">Watch</a></li>
+                <li><a href="login.html">Sign In</a></li>
             </ul>
-            <a href="#" class="cart-icon">Bag</a>
+            <a href="cart.html" class="cart-icon">Bag</a>
         </div>
     </nav>
 
     <main class="config-wrapper">
-        
         <div class="preview-column">
             <div class="phone-aura" id="phone-aura"></div> 
-            <img src="images/17 pro orange 2.png" id="main-phone-img" alt="iPhone 17 Pro">
+            <img src="images/17 pro orange 2.png" id="main-phone-img" alt="iPhone">
         </div>
 
         <div class="options-column">
-            
             <h1 id="main-title">iPhone 17 Pro</h1>
             <p class="price-tag" id="dynamic-price">From $1099</p>
 
             <h3>Model. <span>Which is best for you?</span></h3>
             <div class="storage-grid" style="margin-bottom: 40px;">
-
-                <div class="storage-option model-option" data-base-price="899" data-name="iPhone 17" data-image="images/iphone-17.png">
+                <div class="storage-option model-option" data-model="iPhone 17">
                     <div style="display: flex; justify-content: space-between;">
                         <div><strong>iPhone 17</strong><br><span style="font-size: 13px; color: var(--text-muted);">6.3-inch display</span></div>
                         <div style="text-align: right;"><span style="font-size: 13px;">From $899</span></div>
                     </div>
                 </div>
 
-                <div class="storage-option model-option selected" data-base-price="1099" data-name="iPhone 17 Pro" data-image="images/17 pro orange 2.png">
+                <div class="storage-option model-option selected" data-model="iPhone 17 Pro">
                     <div style="display: flex; justify-content: space-between;">
                         <div><strong>iPhone 17 Pro</strong><br><span style="font-size: 13px; color: var(--text-muted);">6.3-inch ProMotion display</span></div>
                         <div style="text-align: right;"><span style="font-size: 13px;">From $1099</span></div>
@@ -52,102 +50,33 @@
             </div>
 
             <h3>Finish. <span class="selected-color" id="color-name">Titanium Orange</span></h3>
-            <div class="color-selection">
-                <div class="color-dot orange active" data-color="Titanium Orange" data-image="images/17 pro orange 2.png" data-glow="rgba(226, 135, 67, 0.4)"></div>
-                <div class="color-dot blue" data-color="Titanium Blue" data-image="images/17 pro blue 2.png" data-glow="rgba(46, 74, 98, 0.4)"></div>
-                <div class="color-dot white" data-color="Titanium White" data-image="images/17 pro white 2.png" data-glow="rgba(245, 245, 247, 0.2)"></div>
-            </div>
+            <div class="color-selection" id="color-container"></div>
 
             <h3>Storage. <span>How much space do you need?</span></h3>
-            <div class="storage-grid">
-                <div class="storage-option memory-option selected" data-price="0">256GB</div>
-                <div class="storage-option memory-option" data-price="200">512GB (+ $200)</div>
-                <div class="storage-option memory-option" data-price="400">1TB (+ $400)</div>
+            <div class="storage-grid" id="storage-container">
+                <div class="storage-option memory-option selected" data-storage="256GB" data-price="0">256GB</div>
+                <div class="storage-option memory-option" data-storage="512GB" data-price="200">512GB (+ $200)</div>
+                <div class="storage-option memory-option" data-storage="1TB" data-price="400">1TB (+ $400)</div>
             </div>
-
-            <h3>Connectivity. <span>Choose your SIM preference.</span></h3>
+            
+            <h3>Connectivity.</h3>
             <div class="storage-grid"> 
-                <div class="storage-option sim-option selected" data-premium="0">
-                    <strong>eSIM Only</strong><br>
-                    <span style="font-size: 13px; color: var(--text-muted); line-height: 1.8;">Digital SIM. Fast and secure setup.</span>
-                </div>
-                <div class="storage-option sim-option" data-premium="20">
-                    <strong>Physical SIM + eSIM</strong><br>
-                    <span style="font-size: 13px; color: var(--text-muted); line-height: 1.8;">Standard nano-SIM tray plus digital eSIM. (+$20)</span>
-                </div>
-                <div class="storage-option sim-option" data-premium="50">
-                    <strong>Dual Physical SIM</strong><br>
-                    <span style="font-size: 13px; color: var(--text-muted); line-height: 1.8;">Two physical nano-SIM trays. (+$50)</span>
-                </div>
+                <div class="storage-option sim-option selected"><strong>eSIM Only</strong><br><span style="font-size: 13px; color: var(--text-muted);">Digital SIM. Fast and secure setup.</span></div>
             </div>
         </div>
     </main>
 
     <section class="whats-in-the-box">
         <h2>What's in the Box</h2>
-        
         <div class="big-box-backdrop">
             <div class="box-item">
-                <img id="box-phone-img" src="images/17 pro orange 2.png" alt="iPhone 17 Pro">
+                <img id="box-phone-img" src="images/17 pro orange 2.png" alt="iPhone">
                 <p id="box-phone-name">iPhone 17 Pro</p>
             </div>
-            
             <div class="box-item">
                 <img src="images/USB-C.jpg" alt="USB-C Charge Cable" class="blend-img">
                 <p>USB-C Charge Cable</p>
             </div>
-        </div>
-
-        <div class="env-goals">
-            <p><strong>Our environmental goals.</strong></p>
-            <p>As part of our efforts to reach carbon neutrality by 2030, iPhone 17 Pro and iPhone 17 Pro Max do not include a power adapter or EarPods. Included in the box is a USB-C Charge Cable that supports fast charging.</p>
-        </div>
-    </section>
-
-    <section class="compare-grid detailed-specs">
-        <h2>Detailed Technical Specifications</h2>
-        
-        <div class="product-grid">
-
-            <div class="product-card">
-                <h3>iPhone 16</h3>
-                <p class="price">From $799</p>
-                <hr>
-                <ul class="apple-style-specs">
-                    <li><div class="spec-icon">📱</div><strong>6.1" display</strong><span>Super Retina XDR</span></li>
-                    <li><div class="spec-icon">✨</div><strong>Aluminum</strong><span>Color-infused glass back</span></li>
-                    <li><div class="spec-icon">⚙️</div><strong>A18 Chip</strong><span>with 5-core GPU</span></li>
-                    <li><div class="spec-icon">📷</div><strong>Advanced Dual Camera</strong><span>48MP Main | Ultrawide</span></li>
-                    <li><div class="spec-icon">🔋</div><strong>22 hours</strong><span>video playback</span></li>
-                </ul>
-            </div>
-            
-            <div class="product-card">
-                <h3>iPhone 17</h3>
-                <p class="price">From $899</p>
-                <hr>
-                <ul class="apple-style-specs">
-                    <li><div class="spec-icon">📱</div><strong>6.3" display</strong><span>Super Retina XDR</span></li>
-                    <li><div class="spec-icon">✨</div><strong>Aluminum</strong><span>Advanced glass back</span></li>
-                    <li><div class="spec-icon">⚙️</div><strong>A19 Chip</strong><span>with 6-core GPU</span></li>
-                    <li><div class="spec-icon">📷</div><strong>Advanced Dual Camera</strong><span>48MP Main | Ultrawide</span></li>
-                    <li><div class="spec-icon">🔋</div><strong>24 hours</strong><span>video playback</span></li>
-                </ul>
-            </div>
-
-            <div class="product-card pro-card">
-                <h3>iPhone 17 Pro</h3>
-                <p class="price">From $1099</p>
-                <hr>
-                <ul class="apple-style-specs">
-                    <li><div class="spec-icon">📱</div><strong>6.3" ProMotion</strong><span>120Hz Always-On display</span></li>
-                    <li><div class="spec-icon">🛡️</div><strong>Titanium</strong><span>Textured matte glass back</span></li>
-                    <li><div class="spec-icon">⚙️</div><strong>A19 Pro Chip</strong><span>with 6-core GPU</span></li>
-                    <li><div class="spec-icon">📷</div><strong>Pro Camera System</strong><span>48MP Main | 48MP UW | Telephoto</span></li>
-                    <li><div class="spec-icon">🔋</div><strong>29 hours</strong><span>video playback</span></li>
-                </ul>
-            </div>
-
         </div>
     </section>
 
@@ -157,113 +86,134 @@
                 <h4 id="checkout-title">iPhone 17 Pro</h4>
                 <p id="checkout-price">From $1099</p> 
             </div>
-            <button class="add-to-bag-btn">Add to Bag</button>
+            <button class="add-to-bag-btn" onclick="sendToCart()">Add to Bag</button>
         </div>
     </div>
 
     <script>
-        // Grab elements
-        const modelOptions = document.querySelectorAll('.model-option');
-        const memoryOptions = document.querySelectorAll('.memory-option');
-        const simOptions = document.querySelectorAll('.sim-option');
-        
-        const pageTitle = document.getElementById('main-title'); 
-        const checkoutTitle = document.getElementById('checkout-title'); 
+        const productData = {
+            "iPhone 17": {
+                basePrice: 899,
+                colors: [
+                    { name: "Midnight Black", hex: "#2E2E32", img: "images/iphone-17.png", glow: "rgba(46, 46, 50, 0.4)" },
+                    { name: "Starlight White", hex: "#F0EAE3", img: "images/iphone-17.png", glow: "rgba(240, 234, 227, 0.4)" },
+                    { name: "Product RED", hex: "#E30022", img: "images/iphone-17.png", glow: "rgba(227, 0, 34, 0.4)" }
+                ]
+            },
+            "iPhone 17 Pro": {
+                basePrice: 1099,
+                colors: [
+                    { name: "Titanium Orange", hex: "#e28743", img: "images/17 pro orange 2.png", glow: "rgba(226, 135, 67, 0.4)" },
+                    { name: "Titanium Blue", hex: "#2e4a62", img: "images/17 pro blue 2.png", glow: "rgba(46, 74, 98, 0.4)" },
+                    { name: "Titanium White", hex: "#f5f5f7", img: "images/17 pro white 2.png", glow: "rgba(245, 245, 247, 0.2)" }
+                ]
+            }
+        };
+
+        let state = {
+            model: "iPhone 17 Pro",
+            colorObj: productData["iPhone 17 Pro"].colors[0],
+            storage: "256GB",
+            storagePremium: 0,
+            totalPrice: 1099
+        };
+
+        const mainTitle = document.getElementById('main-title');
         const priceTag = document.getElementById('dynamic-price');
-        const checkoutPrice = document.getElementById('checkout-price'); 
-        const mainImg = document.getElementById('main-phone-img'); // Grab main phone image
+        const colorName = document.getElementById('color-name');
+        const mainImg = document.getElementById('main-phone-img');
+        const boxImg = document.getElementById('box-phone-img');
+        const boxName = document.getElementById('box-phone-name');
+        const checkoutTitle = document.getElementById('checkout-title');
+        const checkoutPrice = document.getElementById('checkout-price');
+        const aura = document.getElementById('phone-aura');
+        const colorContainer = document.getElementById('color-container');
 
-        const boxPhoneImg = document.getElementById('box-phone-img');
-        const boxPhoneName = document.getElementById('box-phone-name');
+        function updateUI() {
+            state.totalPrice = productData[state.model].basePrice + state.storagePremium;
+            mainTitle.innerText = state.model;
+            priceTag.innerText = "From $" + state.totalPrice;
+            colorName.innerText = state.colorObj.name;
+            
+            let configString = `${state.model} - ${state.colorObj.name} - ${state.storage}`;
+            checkoutTitle.innerText = configString;
+            checkoutPrice.innerText = "$" + state.totalPrice;
+            boxName.innerText = configString;
 
-        // Starting Values
-        let currentBasePrice = 1099; 
-        let currentStoragePremium = 0; 
-        let currentSimPremium = 0;
-
-        // The Grand Calculator
-        function calculateTotal() {
-            let total = currentBasePrice + currentStoragePremium + currentSimPremium;
-            priceTag.innerText = "From $" + total;
-            if(checkoutPrice) checkoutPrice.innerText = "$" + total; 
+            mainImg.style.opacity = '0';
+            setTimeout(() => {
+                mainImg.src = state.colorObj.img;
+                boxImg.src = state.colorObj.img;
+                if(aura) {
+                    aura.style.backgroundColor = state.colorObj.glow;
+                    aura.style.display = state.model.includes('Pro') ? 'block' : 'none';
+                }
+                mainImg.style.opacity = '1';
+            }, 200);
         }
 
-        // Model Selection Logic
-        modelOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                modelOptions.forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
+        function renderColors() {
+            colorContainer.innerHTML = ''; 
+            const colors = productData[state.model].colors;
+            
+            colors.forEach((color, index) => {
+                const dot = document.createElement('div');
+                dot.className = `color-dot ${index === 0 ? 'active' : ''}`;
+                dot.style.backgroundColor = color.hex;
                 
-                currentBasePrice = parseInt(option.getAttribute('data-base-price'));
-                let newName = option.getAttribute('data-name');
-                let newImage = option.getAttribute('data-image'); 
+                dot.addEventListener('click', () => {
+                    document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+                    dot.classList.add('active');
+                    state.colorObj = color;
+                    updateUI();
+                });
+                
+                colorContainer.appendChild(dot);
+            });
+            state.colorObj = colors[0]; 
+        }
 
-                if (newName.includes('Pro')) {
-                    if(aura) aura.style.display = 'block';
+        document.querySelectorAll('.model-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                document.querySelectorAll('.model-option').forEach(opt => opt.classList.remove('selected'));
+                e.currentTarget.classList.add('selected');
+                state.model = e.currentTarget.getAttribute('data-model');
+                renderColors();
+                updateUI();
+            });
+        });
+
+        document.querySelectorAll('.memory-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                document.querySelectorAll('.memory-option').forEach(opt => opt.classList.remove('selected'));
+                e.currentTarget.classList.add('selected');
+                state.storage = e.currentTarget.getAttribute('data-storage');
+                state.storagePremium = parseInt(e.currentTarget.getAttribute('data-price'));
+                updateUI();
+            });
+        });
+
+        function sendToCart() {
+            localStorage.setItem('bo2PendingOrder', JSON.stringify(state));
+            window.location.href = 'cart.html';
+        }
+
+        renderColors();
+        updateUI();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            let authLink = null;
+            navLinks.forEach(link => { if(link.getAttribute('href') === 'login.html') authLink = link; });
+            const currentUser = localStorage.getItem('bo2User');
+            if (currentUser && authLink) {
+                if (currentUser === 'Admin') {
+                    authLink.innerText = 'Admin Panel'; authLink.href = 'admin.html'; authLink.style.color = '#ff3b30';
                 } else {
-                    if(aura) aura.style.display = 'none';
+                    authLink.innerHTML = `<div style="display: flex; align-items: center; gap: 6px; color: var(--accent-blue);"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile</div>`;
+                    authLink.href = 'account.html';
                 }
-
-                pageTitle.innerText = newName;
-                if(checkoutTitle) checkoutTitle.innerText = newName; 
-
-                mainImg.style.opacity = '0';
-                setTimeout(() => {
-                    mainImg.src = newImage;
-                    mainImg.alt = newName;
-                    
-                    boxPhoneImg.src = newImage;
-                    boxPhoneImg.alt = newName;
-                    boxPhoneName.innerText = newName;
-
-                    mainImg.style.opacity = '1';
-                }, 200);
-                
-                calculateTotal();
-            });
-        });
-
-        // Storage Selection Logic
-        memoryOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                memoryOptions.forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
-                
-                currentStoragePremium = parseInt(option.getAttribute('data-price'));
-                calculateTotal();
-            });
-        });
-
-        // SIM Selection Logic
-        simOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                simOptions.forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
-                
-                currentSimPremium = parseInt(option.getAttribute('data-premium'));
-                calculateTotal();
-            });
-        });
-
-        // Color Switching & Aura Logic
-        const dots = document.querySelectorAll('.color-dot');
-        const colorText = document.getElementById('color-name');
-        const aura = document.getElementById('phone-aura'); 
-
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                dots.forEach(d => d.classList.remove('active'));
-                dot.classList.add('active');
-                
-                if(aura) aura.style.backgroundColor = dot.getAttribute('data-glow');
-                
-                mainImg.style.opacity = '0';
-                setTimeout(() => {
-                    mainImg.src = dot.getAttribute('data-image');
-                    colorText.innerText = dot.getAttribute('data-color');
-                    mainImg.style.opacity = '1';
-                }, 200);
-            });
+            }
         });
     </script>
 </body>

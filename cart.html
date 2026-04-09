@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Bo2 Tech</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .checkout-wrapper { display: flex; flex-wrap: wrap; max-width: 1100px; margin: 100px auto 150px; gap: 60px; padding: 0 5%; }
+        .order-summary { flex: 1; min-width: 300px; background: #121212; padding: 40px; border-radius: 24px; border: 1px solid #424245; height: fit-content; }
+        .order-summary h2 { font-size: 24px; margin-bottom: 30px; border-bottom: 1px solid #424245; padding-bottom: 15px; }
+        .cart-item { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; }
+        .cart-item img { width: 80px; height: auto; }
+        .item-details h4 { font-size: 18px; margin-bottom: 5px; }
+        .item-details p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+        .totals { border-top: 1px solid #424245; padding-top: 20px; margin-top: 20px; }
+        .total-row { display: flex; justify-content: space-between; font-size: 15px; margin-bottom: 10px; color: var(--text-muted); }
+        .grand-total { display: flex; justify-content: space-between; font-size: 24px; font-weight: 600; margin-top: 20px; color: white; }
+        .checkout-form { flex: 1.5; min-width: 350px; }
+        .checkout-form h2 { font-size: 32px; margin-bottom: 30px; font-weight: 600; }
+        .form-section { margin-bottom: 40px; }
+        .form-section h3 { font-size: 18px; margin-bottom: 20px; color: var(--text-muted); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .input-field { width: 100%; padding: 14px 15px; border-radius: 12px; border: 1px solid #424245; background: #1d1d1f; color: white; font-size: 15px; outline: none; margin-bottom: 15px; transition: border 0.3s; }
+        .input-field:focus { border-color: var(--accent-blue); }
+        .place-order-btn { width: 100%; padding: 16px; background: var(--accent-blue); color: white; border: none; border-radius: 12px; font-size: 17px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; margin-top: 20px; }
+        .place-order-btn:hover { background: #0077ed; transform: scale(1.02); }
+    </style>
+</head>
+<body>
+
+    <nav class="apple-nav">
+        <div class="nav-content">
+            <a href="index.html" class="logo">Bo2 Tech</a>
+            <ul class="nav-links">
+                <li><a href="coming-soon.html">Mac</a></li>
+                <li><a href="coming-soon.html">iPad</a></li>
+                <li><a href="index.html">iPhone</a></li>
+                <li><a href="coming-soon.html">Watch</a></li>
+                <li><a href="login.html">Sign In</a></li>
+            </ul>
+            <a href="cart.html" class="cart-icon" style="color: var(--accent-blue);">Bag</a>
+        </div>
+    </nav>
+
+    <main class="checkout-wrapper">
+        <div class="order-summary">
+            <h2>Your Bag</h2>
+            <div class="cart-item">
+                <img src="images/17 pro orange 2.png" id="cart-img" alt="Phone">
+                <div class="item-details">
+                    <h4 id="cart-title">Loading...</h4>
+                    <p id="cart-desc">Loading specs...</p>
+                </div>
+            </div>
+            
+            <div class="totals">
+                <div class="total-row"><span>Subtotal</span> <span id="cart-subtotal">$0.00</span></div>
+                <div class="total-row"><span>Shipping</span> <span>FREE</span></div>
+                <div class="total-row"><span>Estimated Tax</span> <span id="cart-tax">$0.00</span></div>
+                <div class="grand-total"><span>Total</span> <span id="cart-total">$0.00</span></div>
+            </div>
+        </div>
+
+        <div class="checkout-form">
+            <h2>Checkout</h2>
+            <div class="form-section">
+                <h3>1. Shipping Address</h3>
+                <div class="grid-2"><input type="text" class="input-field" placeholder="First Name" required><input type="text" class="input-field" placeholder="Last Name" required></div>
+                <input type="text" class="input-field" placeholder="Street Address" required>
+                <div class="grid-2"><input type="text" class="input-field" placeholder="City" required><input type="text" class="input-field" placeholder="ZIP Code" required></div>
+            </div>
+            <div class="form-section">
+                <h3>2. Contact Information</h3>
+                <input type="email" class="input-field" placeholder="Email Address" required>
+                <input type="tel" class="input-field" placeholder="Phone Number" required>
+            </div>
+            <div class="form-section">
+                <h3>3. Payment Method</h3>
+                <input type="text" class="input-field" placeholder="Card Number" required>
+                <div class="grid-2"><input type="text" class="input-field" placeholder="MM/YY" required><input type="text" class="input-field" placeholder="CVV" required></div>
+            </div>
+            <button type="button" class="place-order-btn" onclick="placeOrder()">Place Order</button>
+        </div>
+    </main>
+
+    <script>
+        let finalOrderString = "Custom iPhone";
+        let finalPriceString = "$0.00";
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const pendingOrderStr = localStorage.getItem('bo2PendingOrder');
+            
+            if (pendingOrderStr) {
+                const orderData = JSON.parse(pendingOrderStr);
+                document.getElementById('cart-img').src = orderData.colorObj.img;
+                document.getElementById('cart-title').innerText = orderData.model;
+                document.getElementById('cart-desc').innerHTML = `${orderData.colorObj.name}<br>${orderData.storage} Storage<br>Unlocked`;
+                
+                const tax = orderData.totalPrice * 0.07;
+                const grandTotal = orderData.totalPrice + tax;
+
+                document.getElementById('cart-subtotal').innerText = "$" + orderData.totalPrice.toFixed(2);
+                document.getElementById('cart-tax').innerText = "$" + tax.toFixed(2);
+                document.getElementById('cart-total').innerText = "$" + grandTotal.toFixed(2);
+
+                finalOrderString = `${orderData.model} - ${orderData.colorObj.name} (${orderData.storage})`;
+                finalPriceString = "$" + grandTotal.toFixed(2);
+            } else {
+                document.getElementById('cart-title').innerText = "Your bag is empty.";
+                document.getElementById('cart-desc').innerHTML = "Go back to the store to add an item.";
+            }
+
+            const navLinks = document.querySelectorAll('.nav-links a');
+            let authLink = null;
+            navLinks.forEach(link => { if(link.getAttribute('href') === 'login.html') authLink = link; });
+            const currentUser = localStorage.getItem('bo2User');
+            if (currentUser && authLink) {
+                if (currentUser === 'Admin') {
+                    authLink.innerText = 'Admin Panel'; authLink.href = 'admin.html'; authLink.style.color = '#ff3b30';
+                } else {
+                    authLink.innerHTML = `<div style="display: flex; align-items: center; gap: 6px; color: var(--accent-blue);"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile</div>`;
+                    authLink.href = 'account.html';
+                }
+            }
+        });
+
+        function placeOrder() {
+            const user = localStorage.getItem('bo2User');
+            if (!user || user === 'Admin') {
+                alert("Please Sign In or Create an Account to place an order.");
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const orders = JSON.parse(localStorage.getItem('bo2Orders_' + user)) || [];
+            orders.push({
+                date: new Date().toLocaleDateString(),
+                item: finalOrderString,
+                price: finalPriceString
+            });
+            localStorage.setItem('bo2Orders_' + user, JSON.stringify(orders));
+            localStorage.removeItem('bo2PendingOrder');
+
+            alert("Payment successful! Your customized order has been placed.");
+            window.location.href = "account.html"; 
+        }
+    </script>
+</body>
+</html>

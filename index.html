@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iPhone 17 Pro - Apex Tech</title>
+    <title>iPhone 17 Pro - Bo2 Tech</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -11,14 +11,15 @@
 
     <nav class="apple-nav">
         <div class="nav-content">
-            <a href="index.html" class="logo">Apex Tech</a>
+            <a href="index.html" class="logo">Bo2 Tech</a>
             <ul class="nav-links">
                 <li><a href="coming-soon.html">Mac</a></li>
                 <li><a href="coming-soon.html">iPad</a></li>
                 <li><a href="index.html">iPhone</a></li>
                 <li><a href="coming-soon.html">Watch</a></li>
+                <li><a href="login.html">Sign In</a></li>
             </ul>
-            <a href="buy.html" class="cart-icon">Bag</a>
+            <a href="cart.html" class="cart-icon">Bag</a>
         </div>
     </nav>
 
@@ -59,7 +60,7 @@
                         <li>60Hz Display</li>
                         <li>Aluminum Design</li>
                     </ul>
-                    <a href="buy.html" class="hero-buy-btn">Buy</a>
+                    <a href="#" class="hero-buy-btn disabled">Out of Stock</a>
                 </div>
         
                 <div class="product-card">
@@ -108,6 +109,95 @@
                 img.className = 'carousel-img ' + positions[index];
             });
         }, 1500);
+    </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- 1. AVATAR PROFILE LOGIC ---
+            const navLinks = document.querySelectorAll('.nav-links a');
+            let authLink = null;
+            navLinks.forEach(link => { if(link.getAttribute('href') === 'login.html') authLink = link; });
+
+            const currentUser = localStorage.getItem('bo2User');
+            if (currentUser && authLink) {
+                if (currentUser === 'Admin') {
+                    authLink.innerText = 'Admin Panel';
+                    authLink.href = 'admin.html';
+                    authLink.style.color = '#ff3b30'; 
+                } else {
+                    authLink.innerHTML = `<div style="display: flex; align-items: center; gap: 6px; color: var(--accent-blue);">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        Profile
+                    </div>`;
+                    authLink.href = 'account.html';
+                }
+            }
+
+            // --- 2. GLOBAL INVENTORY SYNC LOGIC ---
+            let globalInv = JSON.parse(localStorage.getItem('globalInventory'));
+            if (!globalInv) return; 
+
+            const grid = document.querySelector('.product-grid');
+            if (grid) {
+                const cards = grid.querySelectorAll('.product-card');
+
+                cards.forEach(card => {
+                    const titleElement = card.querySelector('h3');
+                    if(titleElement) {
+                        const title = titleElement.innerText.trim();
+                        const invItem = globalInv.find(item => item.name === title);
+                        if (invItem) {
+                            const btn = card.querySelector('button.buy-btn') || card.querySelector('a.hero-buy-btn') || card.querySelector('a.buy-btn') || card.querySelector('a.disabled');
+                            
+                            if (btn) {
+                                if (invItem.status === 'out') {
+                                    btn.innerText = 'Out of Stock';
+                                    if(btn.tagName === 'A') {
+                                        btn.className = 'hero-buy-btn disabled';
+                                    }
+                                } else {
+                                    btn.innerText = 'Buy';
+                                    if(btn.tagName === 'A') {
+                                        btn.className = 'hero-buy-btn';
+                                        btn.href = 'buy.html';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                const newModels = globalInv.filter(item => item.isNew);
+                newModels.forEach(model => {
+                    let exists = false;
+                    cards.forEach(c => { if(c.querySelector('h3') && c.querySelector('h3').innerText.trim() === model.name) exists = true; });
+
+                    if (!exists) {
+                        const newCard = document.createElement('div');
+                        newCard.className = 'product-card';
+                        let btnHTML = model.status === 'in'
+                            ? `<a href="buy.html" class="hero-buy-btn" style="width: 100%; text-align: center;">Buy</a>`
+                            : `<a href="#" class="hero-buy-btn disabled" style="width: 100%; text-align: center;">Out of Stock</a>`;
+
+                        newCard.innerHTML = `
+                            <div class="product-image-container">
+                                <div style="width: 160px; height: 180px; background: #1d1d1f; border-radius: 20px; display: flex; align-items: center; justify-content: center; color: #86868b; font-size: 50px;">📱</div>
+                            </div>
+                            <h3>${model.name}</h3>
+                            <p class="price">From $${model.price}</p>
+                            <hr>
+                            <ul class="specs">
+                                <li>Custom Bo2 Specification</li>
+                                <li>Global Sync Active</li>
+                                <li>Added via Admin Panel</li>
+                            </ul>
+                            ${btnHTML}
+                        `;
+                        grid.appendChild(newCard); 
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
